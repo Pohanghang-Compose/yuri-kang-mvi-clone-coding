@@ -1,6 +1,7 @@
 package org.sopt.mvi_clone_coding.components.molecules
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ButtonDefaults
@@ -23,18 +24,17 @@ fun BackButton(
         onClick = { onClick?.invoke() },
         modifier = modifier,
         shape = CircleShape,
-        border = BorderStroke(
-            1.dp,
-            Color.Blue,
-        ),
+        border = BorderStroke(1.dp, Color.White),
+        contentPadding = PaddingValues(0.dp),
         colors = ButtonDefaults.outlinedButtonColors(
             contentColor = Color.Black,
-            backgroundColor = Color.White,
-        ),
+            backgroundColor = Color.White
+        )
     ) {
         Icon(Icons.Default.ArrowBack, contentDescription = null)
     }
 }
+
 @Preview
 @Composable
 private fun BackButton_Preview() {
