@@ -15,6 +15,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.mvi_clone_coding.common.UiStatus
 import org.sopt.mvi_clone_coding.components.pages.page.DetailsPage
 import org.sopt.mvi_clone_coding.components.pages.page.InitPage
@@ -24,6 +25,7 @@ import org.sopt.mvi_clone_coding.components.pages.state.InitState
 import org.sopt.mvi_clone_coding.components.pages.state.LibraryState
 import org.sopt.mvi_clone_coding.ui.theme.MviclonecodingTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
