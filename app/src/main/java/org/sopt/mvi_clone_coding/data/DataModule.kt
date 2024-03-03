@@ -6,7 +6,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.OkHttpClient
 import org.sopt.mvi_clone_coding.data.database.AppDatabase
 
 @Module
@@ -14,12 +13,8 @@ import org.sopt.mvi_clone_coding.data.database.AppDatabase
 object DataModule {
 
     @Provides
-    fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient()
-    }
-
-    @Provides
     fun provideAppDatabase(application: Application): AppDatabase {
-        return Room.databaseBuilder(application, AppDatabase::class.java, "pokemon-database").build()
+        return Room.databaseBuilder(application, AppDatabase::class.java, "pokemon-database")
+            .build()
     }
 }
