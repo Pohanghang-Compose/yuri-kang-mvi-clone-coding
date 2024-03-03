@@ -42,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
     packaging {
         resources {
@@ -81,20 +81,21 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
     implementation("com.jakewharton.timber:timber:5.0.1")
-    implementation("io.coil-kt:coil:2.3.0")
+    implementation("io.coil-kt:coil:2.5.0")
 
     // Kotlin
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
     implementation("com.google.dagger:hilt-android:2.48.1")
     kapt("com.google.dagger:hilt-android-compiler:2.48.1")
-    kapt("androidx.hilt:hilt-compiler:1.0.0-alpha03")
+    kapt("androidx.hilt:hilt-compiler:1.2.0")
 
     // Navigation Compose
-    implementation("androidx.navigation:navigation-compose:2.4.0-alpha10")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
 
     // Orbit
     implementation("org.orbit-mvi:orbit-core:4.4.0")
     implementation("org.orbit-mvi:orbit-viewmodel:4.4.0")
     implementation("org.orbit-mvi:orbit-compose:4.4.0")
     testImplementation("org.orbit-mvi:orbit-test:4.4.0")
+
 }

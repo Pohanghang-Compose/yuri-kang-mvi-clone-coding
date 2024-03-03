@@ -9,9 +9,11 @@ import org.orbitmvi.orbit.viewmodel.container
 import org.sopt.mvi_clone_coding.common.UiStatus
 import org.sopt.mvi_clone_coding.components.pages.sideeffect.DetailsSideEffect
 import org.sopt.mvi_clone_coding.components.pages.state.DetailsState
+import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel : ContainerHost<DetailsState, DetailsSideEffect>, ViewModel() {
+class DetailViewModel @Inject constructor() : ContainerHost<DetailsState, DetailsSideEffect>,
+    ViewModel() {
 
     override val container = container<DetailsState, DetailsSideEffect>(
         DetailsState(),
