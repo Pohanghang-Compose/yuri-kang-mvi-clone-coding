@@ -89,4 +89,10 @@ dependencies {
 
     // Navigation Compose
     implementation("androidx.navigation:navigation-compose:2.4.0-alpha10")
+
+    // Orbit
+    implementation("org.orbit-mvi:orbit-core:4.4.0")
+    implementation("org.orbit-mvi:orbit-viewmodel:4.4.0")
+    implementation("org.orbit-mvi:orbit-compose:4.4.0")
+    testImplementation("org.orbit-mvi:orbit-test:4.4.0")
 }

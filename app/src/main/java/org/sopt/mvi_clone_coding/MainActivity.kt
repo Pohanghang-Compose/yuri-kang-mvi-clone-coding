@@ -15,9 +15,11 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import org.sopt.mvi_clone_coding.components.pages.DetailsPage
-import org.sopt.mvi_clone_coding.components.pages.InitPage
-import org.sopt.mvi_clone_coding.components.pages.LibraryPage
+import org.sopt.mvi_clone_coding.common.UiStatus
+import org.sopt.mvi_clone_coding.components.pages.page.DetailsPage
+import org.sopt.mvi_clone_coding.components.pages.page.InitPage
+import org.sopt.mvi_clone_coding.components.pages.page.LibraryPage
+import org.sopt.mvi_clone_coding.components.pages.state.InitState
 import org.sopt.mvi_clone_coding.ui.theme.MviclonecodingTheme
 
 class MainActivity : ComponentActivity() {
@@ -49,7 +51,11 @@ private fun NavGraphBuilder.addInit(navController: NavController) {
     composable(route = Screen.Init.route) {
         // 버튼 클릭 시 화면 이동
         InitPage(
-            onNavigateToLibrary = { navController.navigate(Screen.Library.route) },
+            state = InitState(
+                status = UiStatus.Success,
+            ),
+            onRetry = { /*TODO*/ },
+            // onNavigateToLibrary = { navController.navigate(Screen.Library.route) },
         )
     }
 }

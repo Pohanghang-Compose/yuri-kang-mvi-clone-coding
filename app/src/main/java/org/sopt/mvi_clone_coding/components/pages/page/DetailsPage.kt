@@ -1,6 +1,5 @@
-package org.sopt.mvi_clone_coding.components.pages
+package org.sopt.mvi_clone_coding.components.pages.page
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -14,23 +13,22 @@ import androidx.compose.ui.unit.dp
 import org.sopt.mvi_clone_coding.components.molecules.BackButton
 
 @Composable
-fun LibraryPage(
-    onNavigateToDetails: () -> Unit,
+fun DetailsPage(
+    onNavigateToInit: () -> Unit,
 ) {
     Scaffold {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it)
-                .background(Color.White),
+                .padding(it),
         ) {
             Text(
-                text = "LibraryPage",
+                text = "DetailsPage",
                 color = Color.Black,
             )
         }
         BackButton(
-            onClick = { onNavigateToDetails.invoke() },
+            onClick = { onNavigateToInit.invoke() },
             modifier = Modifier
                 .size(48.dp)
                 .padding(top = 12.dp, start = 12.dp),
