@@ -15,9 +15,13 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import org.sopt.mvi_clone_coding.components.pages.DetailsPage
-import org.sopt.mvi_clone_coding.components.pages.InitPage
-import org.sopt.mvi_clone_coding.components.pages.LibraryPage
+import org.sopt.mvi_clone_coding.common.UiStatus
+import org.sopt.mvi_clone_coding.components.pages.page.DetailsPage
+import org.sopt.mvi_clone_coding.components.pages.page.InitPage
+import org.sopt.mvi_clone_coding.components.pages.page.LibraryPage
+import org.sopt.mvi_clone_coding.components.pages.state.DetailsState
+import org.sopt.mvi_clone_coding.components.pages.state.InitState
+import org.sopt.mvi_clone_coding.components.pages.state.LibraryState
 import org.sopt.mvi_clone_coding.ui.theme.MviclonecodingTheme
 
 class MainActivity : ComponentActivity() {
@@ -33,7 +37,7 @@ class MainActivity : ComponentActivity() {
                         androidx.compose.material.MaterialTheme.colors.primarySurface.toArgb()
                     Box(modifier = Modifier.fillMaxSize()) {
                         val navController = rememberNavController()
-                        NavHost(navController, startDestination = Screen.Init.route) {
+                        NavHost(navController, startDestination = Screen.Details.route) {
                             addInit(navController = navController)
                             addLibrary(navController = navController)
                             addDetails(navController = navController)
@@ -49,7 +53,11 @@ private fun NavGraphBuilder.addInit(navController: NavController) {
     composable(route = Screen.Init.route) {
         // 버튼 클릭 시 화면 이동
         InitPage(
-            onNavigateToLibrary = { navController.navigate(Screen.Library.route) },
+            state = InitState(
+                status = UiStatus.Success,
+            ),
+            onRetry = { /*TODO*/ },
+            // onNavigateToLibrary = { navController.navigate(Screen.Library.route) },
         )
     }
 }
@@ -57,7 +65,9 @@ private fun NavGraphBuilder.addInit(navController: NavController) {
 private fun NavGraphBuilder.addLibrary(navController: NavController) {
     composable(route = Screen.Library.route) {
         LibraryPage(
-            onNavigateToDetails = { navController.navigate(Screen.Details.route) },
+            state = LibraryState(
+                status = UiStatus.Success,
+            ),
         )
     }
 }
@@ -65,7 +75,11 @@ private fun NavGraphBuilder.addLibrary(navController: NavController) {
 private fun NavGraphBuilder.addDetails(navController: NavController) {
     composable(route = Screen.Details.route) {
         DetailsPage(
-            onNavigateToInit = { navController.navigate(Screen.Init.route) },
+            state = DetailsState(
+                status = UiStatus.Success,
+            ),
+            onBack = { navController.popBackStack() }
+            // onNavigateToInit = { navController.navigate(Screen.Init.route) },
         )
     }
 }
