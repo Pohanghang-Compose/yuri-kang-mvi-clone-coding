@@ -3,6 +3,9 @@ package org.sopt.mvi_clone_coding.data.entity
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import javax.inject.Singleton
+
+@Singleton
 
 @Entity(
     tableName = "prev_evolutions",

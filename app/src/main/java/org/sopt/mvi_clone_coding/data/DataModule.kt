@@ -20,33 +20,41 @@ import org.sopt.mvi_clone_coding.data.datasource.PokemonDatasource
 import org.sopt.mvi_clone_coding.data.repository.ConfigRepository
 import org.sopt.mvi_clone_coding.data.repository.PokemonRepository
 import org.sopt.mvi_clone_coding.data.repository.PokemonRepositoryImpl
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object DataModule {
 
     @Provides
-    fun provideAppDatabase(application: Application): AppDatabase {
+    @Singleton
+    fun provideAppDatabase(
+        application: Application,
+    ): AppDatabase {
         return Room.databaseBuilder(application, AppDatabase::class.java, "pokemon-database")
             .build()
     }
 
     @Provides
+    @Singleton
     fun provideConfigRepository(context: Context): ConfigRepository {
         return ConfigRepository(context)
     }
 
     @Provides
+    @Singleton
     fun provideDatasource(context: Context): PokemonDatasource {
         return PokemonDatasource(context)
     }
 
     @Provides
+    @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient()
     }
 
     @Provides
+    @Singleton
     fun providePokemonRepository(
         pokemonDatasource: PokemonDatasource,
         pokemonDao: PokemonDao,
@@ -76,46 +84,55 @@ object DataModule {
     }
 
     @Provides
+    @Singleton
     fun provideContext(application: Application): Context {
         return application.applicationContext
     }
 
     @Provides
+    @Singleton
     fun providePokemonDao(appDatabase: AppDatabase): PokemonDao {
         return appDatabase.getPokemonDao()
     }
 
     @Provides
+    @Singleton
     fun provideMultiplierDao(appDatabase: AppDatabase): MultiplierDao {
         return appDatabase.getMultiplierDao()
     }
 
     @Provides
+    @Singleton
     fun provideNextEvolutionDao(appDatabase: AppDatabase): NextEvolutionDao {
         return appDatabase.getNextEvolutionDao()
     }
 
     @Provides
+    @Singleton
     fun providePrevEvolutionDao(appDatabase: AppDatabase): PrevEvolutionDao {
         return appDatabase.getPrevEvolutionDao()
     }
 
     @Provides
+    @Singleton
     fun provideTypeDao(appDatabase: AppDatabase): TypeDao {
         return appDatabase.getTypeDao()
     }
 
     @Provides
+    @Singleton
     fun provideWeaknessDao(appDatabase: AppDatabase): WeaknessDao {
         return appDatabase.getWeaknessDao()
     }
 
     @Provides
+    @Singleton
     fun provideImageDao(appDatabase: AppDatabase): ImageDao {
         return appDatabase.getImageDao()
     }
 
     @Provides
+    @Singleton
     fun provideImageDirectory(application: Application): String {
         return application.filesDir.toString()
     }

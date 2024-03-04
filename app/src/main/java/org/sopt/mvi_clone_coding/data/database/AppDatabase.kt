@@ -16,6 +16,7 @@ import org.sopt.mvi_clone_coding.data.entity.PokemonEntity
 import org.sopt.mvi_clone_coding.data.entity.PrevEvolutionEntity
 import org.sopt.mvi_clone_coding.data.entity.TypeEntity
 import org.sopt.mvi_clone_coding.data.entity.WeaknessEntity
+import javax.inject.Singleton
 
 @Database(
     entities = [
@@ -29,6 +30,7 @@ import org.sopt.mvi_clone_coding.data.entity.WeaknessEntity
     ],
     version = 1,
 )
+@Singleton
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getMultiplierDao(): MultiplierDao
     abstract fun getNextEvolutionDao(): NextEvolutionDao
