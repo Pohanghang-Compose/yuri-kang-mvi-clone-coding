@@ -25,17 +25,17 @@ data class PokemonItemDto(
     @SerialName("name")
     val name: String? = null,
     @SerialName("next_evolution")
-    val nextEvolution: List<NextEvolutionDto>? = null,
+    val nextEvolutions: List<NextEvolutionDto>? = null,
     @SerialName("num")
     val num: String? = null,
     @SerialName("prev_evolution")
-    val prevEvolution: List<PrevEvolutionDto>? = null,
+    val prevEvolutions: List<PrevEvolutionDto>? = null,
     @SerialName("spawn_chance")
     val spawnChance: Double = 0.0,
     @SerialName("spawn_time")
     val spawnTime: String? = null,
     @SerialName("type")
-    val type: List<String>? = null,
+    val types: List<String>? = null,
     @SerialName("weaknesses")
     val weaknesses: List<String>? = null,
     @SerialName("weight")
