@@ -4,9 +4,11 @@ import androidx.room.Embedded
 import androidx.room.Relation
 
 data class PokemonDetails(
+    // PokemonDetails가 PokemonEntity 필드 포함 중
     @Embedded
     val pokemon: PokemonEntity,
 
+    // 다른 엔티티와의 관계 정의
     @Relation(parentColumn = "id", entityColumn = "pokemonId", entity = MultiplierEntity::class)
     val multipliers: List<MultiplierEntity>,
 
