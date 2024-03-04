@@ -4,6 +4,9 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import org.sopt.mvi_clone_coding.data.enum.PokemonType
+import javax.inject.Singleton
+
+@Singleton
 
 @Entity(
     tableName = "weaknesses",

@@ -8,21 +8,27 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.primarySurface
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
 import org.sopt.mvi_clone_coding.common.UiStatus
 import org.sopt.mvi_clone_coding.components.pages.page.DetailsPage
 import org.sopt.mvi_clone_coding.components.pages.page.InitPage
 import org.sopt.mvi_clone_coding.components.pages.page.LibraryPage
+import org.sopt.mvi_clone_coding.components.pages.sideeffect.InitSideEffect
 import org.sopt.mvi_clone_coding.components.pages.state.DetailsState
-import org.sopt.mvi_clone_coding.components.pages.state.InitState
 import org.sopt.mvi_clone_coding.components.pages.state.LibraryState
+import org.sopt.mvi_clone_coding.components.pages.viewmodel.InitViewModel
 import org.sopt.mvi_clone_coding.ui.theme.MviclonecodingTheme
 
 @AndroidEntryPoint
@@ -39,7 +45,7 @@ class MainActivity : ComponentActivity() {
                         androidx.compose.material.MaterialTheme.colors.primarySurface.toArgb()
                     Box(modifier = Modifier.fillMaxSize()) {
                         val navController = rememberNavController()
-                        NavHost(navController, startDestination = Screen.Details.route) {
+                        NavHost(navController, startDestination = Screen.Init.route) {
                             addInit(navController = navController)
                             addLibrary(navController = navController)
                             addDetails(navController = navController)
@@ -53,13 +59,19 @@ class MainActivity : ComponentActivity() {
 
 private fun NavGraphBuilder.addInit(navController: NavController) {
     composable(route = Screen.Init.route) {
-        // 버튼 클릭 시 화면 이동
+        val iniViewModel: InitViewModel = hiltViewModel()
+        val state by iniViewModel.collectAsState()
+        iniViewModel.collectSideEffect {
+            when (it) {
+                is InitSideEffect.Completed -> {
+                    navController.navigate(route = Screen.Library.route)
+                }
+            }
+        }
+
         InitPage(
-            state = InitState(
-                status = UiStatus.Success,
-            ),
-            onRetry = { /*TODO*/ },
-            // onNavigateToLibrary = { navController.navigate(Screen.Library.route) },
+            state = state,
+            onRetry = { iniViewModel.retry() },
         )
     }
 }
@@ -80,7 +92,7 @@ private fun NavGraphBuilder.addDetails(navController: NavController) {
             state = DetailsState(
                 status = UiStatus.Success,
             ),
-            onBack = { navController.popBackStack() }
+            onBack = { navController.popBackStack() },
             // onNavigateToInit = { navController.navigate(Screen.Init.route) },
         )
     }
