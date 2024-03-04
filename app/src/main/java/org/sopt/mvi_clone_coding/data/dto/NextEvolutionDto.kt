@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class NextEvolution(
+data class NextEvolutionDto(
     @SerialName("name")
     val name: String,
     @SerialName("num")

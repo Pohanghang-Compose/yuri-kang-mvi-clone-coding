@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PokemonItem(
+data class PokemonItemDto(
     @SerialName("avg_spawns")
     val avgSpawns: Double = 0.0,
     @SerialName("candy")
@@ -25,11 +25,11 @@ data class PokemonItem(
     @SerialName("name")
     val name: String? = null,
     @SerialName("next_evolution")
-    val nextEvolution: List<NextEvolution>? = null,
+    val nextEvolution: List<NextEvolutionDto>? = null,
     @SerialName("num")
     val num: String? = null,
     @SerialName("prev_evolution")
-    val prevEvolution: List<PrevEvolution>? = null,
+    val prevEvolution: List<PrevEvolutionDto>? = null,
     @SerialName("spawn_chance")
     val spawnChance: Double = 0.0,
     @SerialName("spawn_time")
